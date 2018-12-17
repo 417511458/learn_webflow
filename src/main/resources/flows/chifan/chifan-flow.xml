@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="
+      	http://www.springframework.org/schema/webflow
+      	http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<on-start>
+		<evaluate expression="chifanStartAction" />
+	</on-start>
+	
+	<view-state id="welcome" view="flows/chifan/welcome">
+		<transition on="success" to="jiezhang" />
+	</view-state>
+
+	<view-state id="jiezhang" view="flows/chifan/jiezhang">
+		<transition on="success" to="toJiezhang" />
+	</view-state>
+
+	<action-state id="toJiezhang">
+		<evaluate expression="chifanJiezhangAction" />
+		<transition on="Beijing" to="Beijing" />
+		<transition on="Langfang" to="Langfang" />
+		<transition on="Dezhou" to="Dezhou" />
+		<transition on="Jinan" to="Jinan" />
+	</action-state>
+
+
+	<end-state id="Beijing" />
+	<end-state id="Langfang" />
+	<end-state id="Dezhou" />
+	<end-state id="Jinan" />
+
+</flow>

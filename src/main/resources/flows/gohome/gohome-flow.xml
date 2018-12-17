@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="
+      	http://www.springframework.org/schema/webflow
+      	http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<on-start>
+		<evaluate expression="goHomeStartAction" />
+	</on-start>
+	
+	<view-state id="viewBeijing" view="flows/gohome/start">
+		<transition on="jiayou" to="toJiayou" />
+		<transition on="shoushidongxi" to="shoushidongxi" />
+		<transition on="go" to="toLangfang" />
+	</view-state>
+
+	<view-state id="viewLangfang" view="flows/gohome/city">
+		<transition on="jiayou" to="toJiayou" />
+		<transition on="chifan" to="toChifan" />
+		<transition on="go" to="toDezhou" />
+	</view-state>
+
+	<view-state id="viewDezhou" view="flows/gohome/city">
+		<transition on="jiayou" to="toJiayou" />
+		<transition on="chifan" to="toChifan" />
+		<transition on="go" to="toJinan" />
+	</view-state>
+
+	<view-state id="viewJinan" view="flows/gohome/city">
+		<transition on="jiayou" to="toJiayou" />
+		<transition on="chifan" to="toChifan" />
+		<transition on="go" to="cancel" />
+	</view-state>
+
+	
+	<action-state id="shoushidongxi">
+		<evaluate expression="shoushidongxiAction" />
+		<transition on="success" to="viewBeijing"></transition>
+	</action-state>
+
+	<action-state id="toLangfang">
+		<evaluate expression="toLangfangAction"></evaluate>
+		<transition on="success" to="viewLangfang"></transition>
+		<transition on="error" to="viewBeijing"></transition>
+	</action-state>
+
+	<action-state id="toDezhou">
+		<evaluate expression="toDezhouAction"></evaluate>
+		<transition on="success" to="viewDezhou"></transition>
+		<transition on="error" to="viewLangfang"></transition>
+	</action-state>
+
+	<action-state id="toJinan">
+		<evaluate expression="toJinanAction"></evaluate>
+		<transition on="success" to="viewJinan"></transition>
+		<transition on="error" to="viewDezhou"></transition>
+	</action-state>
+
+	<subflow-state id="toChifan" subflow="chifan">
+		<transition on="Beijing" to="viewBeijing" />
+		<transition on="Langfang" to="viewLangfang" />
+		<transition on="Dezhou" to="viewDezhou" />
+		<transition on="Jinan" to="viewJinan" />
+	</subflow-state>
+
+	<subflow-state id="toJiayou" subflow="jiayou">
+		<transition on="Beijing" to="viewBeijing" />
+		<transition on="Langfang" to="viewLangfang" />
+		<transition on="Dezhou" to="viewDezhou" />
+		<transition on="Jinan" to="viewJinan" />
+	</subflow-state>
+
+	<end-state id="cancel" view="flows/gohome/home" />
+
+</flow>

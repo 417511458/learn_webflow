@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tiles="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Proceed</title>
+</head>
+<body>
+Test WebFlow! Proceed
+<label th:text="${testValue}"></label>
+
+<form id="test" action="#" th:action="${flowExecutionUrl}" method="post">
+    <button type="cancel" value="cancel" name="_eventId_cancel">cancel</button>
+</form>
+</body>
+</html>

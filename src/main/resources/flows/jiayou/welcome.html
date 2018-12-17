@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tiles="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>加油流程</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="page-header">
+        <h1>回家途中 -> <label style="color: red">加油子流程</label> <small><label th:text="${goHomeDomain.startLocation}"></label> -> <label th:text="${goHomeDomain.endLocation}"></label></small></h1>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><label>当前在：</label><label th:text="${goHomeDomain.currentLocation}"></label></h3>
+        </div>
+        <div class="panel-body">
+            <h1>这里是加油站，要加多少？</h1><br />
+
+            <form id="test" action="#" th:action="${flowExecutionUrl}" method="post">
+                <input type="hidden" name="_eventId" id="_eventId" />
+                <button type="submit" value="success" onclick="javascript:document.getElementById('_eventId').value = 'success'" class="btn btn-primary">加满吧</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

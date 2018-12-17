@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tiles="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Test WebFlow!
+<label th:text="${testValue}"></label>
+
+<form id="test" action="#" th:action="${flowExecutionUrl}" method="post">
+    <input type="hidden" name="_eventId" id="_eventId" />
+    <button type="submit" value="proceed" onclick="javascript:document.getElementById('_eventId').value = 'proceed'">proceed</button>
+    <button type="cancel" value="cancel" onclick="javascript:document.getElementById('_eventId').value = 'cancel'">cancel</button>
+</form>
+</body>
+</html>
